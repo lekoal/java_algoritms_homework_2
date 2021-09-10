@@ -1,15 +1,14 @@
 package ru.geekbrains.java_algoritms_homework_2;
 
 import java.util.Collections;
-import java.util.List;
 import java.util.Random;
 import java.util.ArrayList;
 
 public class MyArrayList {
 
-    List<Integer> myArrayList;
+    ArrayList<Integer> myArrayList;
 
-    public MyArrayList(int capacity) {
+    public MyArrayList(int capacity) { // конструктор массива, при вызывании заполняет его случайными числами в пределе 1000 значений
         if (capacity <= 0) throw new IllegalArgumentException("capacity cant be <= 0");
         myArrayList = new ArrayList<>(capacity);
 
@@ -19,40 +18,40 @@ public class MyArrayList {
         }
     }
 
-    public void add(int index, int value) {
+    public void add(int index, int value) { // метод добавления значения по индексу
         if (index <= 0) throw new IllegalArgumentException("index cant be <= 0");
         myArrayList.add(index, value);
     }
 
-    public void add(int value) {
+    public void add(int value) { // метод добавления значения в конец
         myArrayList.add(value);
     }
 
-    public void deleteIndex(int index) {
+    public void deleteIndex(int index) { // метод удаления по индексу
         if (index <= 0) throw new IllegalArgumentException("index cant be <= 0");
         myArrayList.remove(index);
     }
 
-    public void deleteAllValue(int value) {
+    public void deleteAllValue(int value) { // метод удаления всех заданных значений
         myArrayList.removeAll(Collections.singleton(value));
     }
 
-    public void deleteValue(int value) {
+    public void deleteValue(int value) { // метод удаления по значению
         myArrayList.remove((Object) value);
     }
 
-    public int searchByIndex(int index) {
+    public int searchByIndex(int index) { // метод поиска по индексу
         if (index < 0 || index > myArrayList.size())
             throw new IllegalArgumentException("index cant be < 0 or > array size");
         return myArrayList.get(index);
     }
 
-    public int searchByValue(int value) {
+    public int searchByValue(int value) { // метод поиска по значению
         if (myArrayList.contains(value)) return myArrayList.indexOf(value);
         return -1;
     }
 
-    public int binarySearch(int value) {
+    public int binarySearch(int value) { // метод бинарного поиска в отсортированном массиве
         int lo = 0;
         int hi = myArrayList.size() - 1;
         while (lo <= hi) {
@@ -68,82 +67,93 @@ public class MyArrayList {
         return -1;
     }
 
-    public void print() {
+    public void checkSize() { // метод проверки размера массива
+        System.out.println("array size is: " + myArrayList.size());
+    }
+
+    public void enlargeArray() { // метод увеличения массива в 1,5 + 1 раз
+        double capacity = (myArrayList.size() * 1.5 + 1) - myArrayList.size();
+            for (int i = 0; i < (int)capacity; i++) {
+                myArrayList.add(null);
+            }
+    }
+
+    public void print() { // метод вывода массива в консоль
         System.out.println(myArrayList);
     }
 
-    private boolean less(int item1, int item2) {
+    private boolean less(int item1, int item2) { // проверка на меньшее число
         return (item1 < item2);
     }
 
-    private void swap(int index1, int index2) {
+    private void swap(int index1, int index2) { // метод замены значения
         int temp = myArrayList.get(index1);
         myArrayList.set(index1, myArrayList.get(index2));
         myArrayList.set(index2, temp);
     }
 
-    public int selectionSort() {
+    public int selectionSort() { // метод сортировки методом выбора
         int iMin;
-        int speedCount = 0;
+        int operationsCount = 0;
         for (int i = 0; i < myArrayList.size() - 1; i++) {
             iMin = i;
-            speedCount++;
+            operationsCount++;
             for (int j = i + 1; j < myArrayList.size(); j++) {
-                speedCount++;
+                operationsCount++;
                 if (less(myArrayList.get(j), myArrayList.get(iMin))) {
                     iMin = j;
-                    speedCount++;
+                    operationsCount++;
                 }
             }
             swap(i, iMin);
-            speedCount++;
+            operationsCount++;
         }
-        return speedCount;
+        return operationsCount;
     }
 
-    public int insertionSort() {
+    public int insertionSort() { // метод сортировки методом вставки
         int key;
-        int speedCount = 0;
+        int operationsCount = 0;
         for (int i = 0; i < myArrayList.size(); i++) {
-            speedCount++;
+            operationsCount++;
             int j = i;
             key = myArrayList.get(i);
             while (j > 0 && less(key, myArrayList.get(j - 1))) {
                 myArrayList.set(j, myArrayList.get(j - 1));
                 j--;
-                speedCount++;
+                operationsCount++;
             }
             myArrayList.set(j, key);
-            speedCount++;
+            operationsCount++;
         }
-        return speedCount;
+        return operationsCount;
     }
 
-    public int bubbleSort() {
-        int speedCount = 0;
+    public int bubbleSort() { // метод пузырьковой сортировки
+        int operationsCount = 0;
         for (int i = myArrayList.size() - 1; i > 0; i--) {
-            speedCount++;
+            operationsCount++;
             for (int j = 0; j < i; j++) {
-                speedCount++;
+                operationsCount++;
                 if (less(myArrayList.get(j + 1), myArrayList.get(j))) {
-                    speedCount++;
+                    operationsCount++;
                     swap(j + 1, j);
                 }
             }
         }
-        return speedCount;
+        return operationsCount;
     }
 
-    public int bubbleSortOptimized() {
+    public int bubbleSortOptimized() { // метод оптимизированной пузырьковой сортировки с прерыванием
         boolean isSwap;
-        int speedCount = 0;
+        int operationsCount = 0;
         for (int i = myArrayList.size() - 1; i > 0; i--) {
-            speedCount++;
+            operationsCount++;
             isSwap = false;
             for (int j = 0; j < i; j++) {
-                speedCount++;
+                operationsCount++;
                 if (less(myArrayList.get(j + 1), myArrayList.get(j))) {
-                    speedCount++;
+                    operationsCount++;
                     swap(j + 1, j);
                     isSwap = true;
                 }
@@ -152,6 +162,6 @@ public class MyArrayList {
                 break;
             }
         }
-        return speedCount;
+        return operationsCount;
     }
 }
