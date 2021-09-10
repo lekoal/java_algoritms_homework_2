@@ -73,9 +73,9 @@ public class MyArrayList {
 
     public void enlargeArray() { // метод увеличения массива в 1,5 + 1 раз
         double capacity = (myArrayList.size() * 1.5 + 1) - myArrayList.size();
-            for (int i = 0; i < (int)capacity; i++) {
-                myArrayList.add(null);
-            }
+        for (int i = 0; i < (int) capacity; i++) {
+            myArrayList.add(null);
+        }
     }
 
     public void print() { // метод вывода массива в консоль
@@ -92,9 +92,10 @@ public class MyArrayList {
         myArrayList.set(index2, temp);
     }
 
-    public int selectionSort() { // метод сортировки методом выбора
+    public long selectionSort() { // метод сортировки методом выбора
+        long startTime = System.currentTimeMillis();
         int iMin;
-        int operationsCount = 0;
+        long operationsCount = 0;
         for (int i = 0; i < myArrayList.size() - 1; i++) {
             iMin = i;
             operationsCount++;
@@ -108,12 +109,15 @@ public class MyArrayList {
             swap(i, iMin);
             operationsCount++;
         }
+        long endTime = System.currentTimeMillis();
+        System.out.println("Selection sort execution time: " + (endTime - startTime) + "ms");
         return operationsCount;
     }
 
-    public int insertionSort() { // метод сортировки методом вставки
+    public long insertionSort() { // метод сортировки методом вставки
+        long startTime = System.currentTimeMillis();
         int key;
-        int operationsCount = 0;
+        long operationsCount = 0;
         for (int i = 0; i < myArrayList.size(); i++) {
             operationsCount++;
             int j = i;
@@ -126,11 +130,14 @@ public class MyArrayList {
             myArrayList.set(j, key);
             operationsCount++;
         }
+        long endTime = System.currentTimeMillis();
+        System.out.println("Insertion sort execution time: " + (endTime - startTime) + "ms");
         return operationsCount;
     }
 
-    public int bubbleSort() { // метод пузырьковой сортировки
-        int operationsCount = 0;
+    public long bubbleSort() { // метод пузырьковой сортировки
+        long startTime = System.currentTimeMillis();
+        long operationsCount = 0;
         for (int i = myArrayList.size() - 1; i > 0; i--) {
             operationsCount++;
             for (int j = 0; j < i; j++) {
@@ -141,12 +148,15 @@ public class MyArrayList {
                 }
             }
         }
+        long endTime = System.currentTimeMillis();
+        System.out.println("Bubble sort execution time: " + (endTime - startTime) + "ms");
         return operationsCount;
     }
 
-    public int bubbleSortOptimized() { // метод оптимизированной пузырьковой сортировки с прерыванием
+    public long bubbleSortOptimized() { // метод оптимизированной пузырьковой сортировки с прерыванием
+        long startTime = System.currentTimeMillis();
         boolean isSwap;
-        int operationsCount = 0;
+        long operationsCount = 0;
         for (int i = myArrayList.size() - 1; i > 0; i--) {
             operationsCount++;
             isSwap = false;
@@ -162,6 +172,8 @@ public class MyArrayList {
                 break;
             }
         }
+        long endTime = System.currentTimeMillis();
+        System.out.println("Bubble optimized sort execution time: " + (endTime - startTime) + "ms");
         return operationsCount;
     }
 }
