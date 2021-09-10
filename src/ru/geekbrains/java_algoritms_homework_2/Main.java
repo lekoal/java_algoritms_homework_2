@@ -35,7 +35,7 @@ public class Main {
         System.out.println("New array");
         MyArrayList myArrayList2 = new MyArrayList(100000);
 //        myArrayList2.print();
-        System.out.println("Insertion sort operations count: " + myArrayList2.insertionSort());
+        System.out.println("Insertion sort operations count: " + myArrayList2.insertionSort()); // Запуск сортировки с подсчётом времени выполнения
 //        myArrayList2.print();
         System.out.println();
         System.out.println("New array");
@@ -50,7 +50,7 @@ public class Main {
 //        myArrayList4.add(5, 233);
         System.out.println("Bubble sort optimized operations count: " + myArrayList4.bubbleSortOptimized());
 //        myArrayList4.print();
-        System.out.println(myArrayList4.binarySearch(233));
+//        System.out.println(myArrayList4.binarySearch(233));
 //        myArrayList4.checkSize();
 //        myArrayList4.enlargeArray();
 //        myArrayList4.checkSize();
