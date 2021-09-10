@@ -17,6 +17,27 @@ public class Main {
         myArrayList.print();
         System.out.println(myArrayList.searchByIndex(4));
         System.out.println(myArrayList.searchByValue(55));
-
+        System.out.println("Selection sort speed: " + myArrayList.selectionSort());
+        myArrayList.print();
+        System.out.println();
+        System.out.println("New array");
+        MyArrayList myArrayList2 = new MyArrayList(10);
+        myArrayList2.print();
+        System.out.println("Insertion sort speed: " + myArrayList2.insertionSort());
+        myArrayList2.print();
+        System.out.println();
+        System.out.println("New array");
+        MyArrayList myArrayList3 = new MyArrayList(10);
+        myArrayList3.print();
+        System.out.println("Bubble sort speed: " + myArrayList3.bubbleSort());
+        myArrayList3.print();
+        System.out.println();
+        System.out.println("New array");
+        MyArrayList myArrayList4 = new MyArrayList(10);
+        myArrayList4.print();
+        myArrayList4.add(5, 233);
+        System.out.println("Bubble sort optimized speed: " + myArrayList4.bubbleSortOptimized());
+        myArrayList4.print();
+        System.out.println(myArrayList4.binarySearch(233));
     }
 }

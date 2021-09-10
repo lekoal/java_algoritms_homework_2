@@ -52,7 +52,106 @@ public class MyArrayList {
         return -1;
     }
 
+    public int binarySearch(int value) {
+        int lo = 0;
+        int hi = myArrayList.size() - 1;
+        while (lo <= hi) {
+            int mid = lo + (hi - lo) / 2;
+            if (value < myArrayList.get(mid)) {
+                hi = mid - 1;
+            } else if (value > myArrayList.get(mid)) {
+                lo = mid + 1;
+            } else {
+                return mid;
+            }
+        }
+        return -1;
+    }
+
     public void print() {
         System.out.println(myArrayList);
+    }
+
+    private boolean less(int item1, int item2) {
+        return (item1 < item2);
+    }
+
+    private void swap(int index1, int index2) {
+        int temp = myArrayList.get(index1);
+        myArrayList.set(index1, myArrayList.get(index2));
+        myArrayList.set(index2, temp);
+    }
+
+    public int selectionSort() {
+        int iMin;
+        int speedCount = 0;
+        for (int i = 0; i < myArrayList.size() - 1; i++) {
+            iMin = i;
+            speedCount++;
+            for (int j = i + 1; j < myArrayList.size(); j++) {
+                speedCount++;
+                if (less(myArrayList.get(j), myArrayList.get(iMin))) {
+                    iMin = j;
+                    speedCount++;
+                }
+            }
+            swap(i, iMin);
+            speedCount++;
+        }
+        return speedCount;
+    }
+
+    public int insertionSort() {
+        int key;
+        int speedCount = 0;
+        for (int i = 0; i < myArrayList.size(); i++) {
+            speedCount++;
+            int j = i;
+            key = myArrayList.get(i);
+            while (j > 0 && less(key, myArrayList.get(j - 1))) {
+                myArrayList.set(j, myArrayList.get(j - 1));
+                j--;
+                speedCount++;
+            }
+            myArrayList.set(j, key);
+            speedCount++;
+        }
+        return speedCount;
+    }
+
+    public int bubbleSort() {
+        int speedCount = 0;
+        for (int i = myArrayList.size() - 1; i > 0; i--) {
+            speedCount++;
+            for (int j = 0; j < i; j++) {
+                speedCount++;
+                if (less(myArrayList.get(j + 1), myArrayList.get(j))) {
+                    speedCount++;
+                    swap(j + 1, j);
+                }
+            }
+        }
+        return speedCount;
+    }
+
+    public int bubbleSortOptimized() {
+        boolean isSwap;
+        int speedCount = 0;
+        for (int i = myArrayList.size() - 1; i > 0; i--) {
+            speedCount++;
+            isSwap = false;
+            for (int j = 0; j < i; j++) {
+                speedCount++;
+                if (less(myArrayList.get(j + 1), myArrayList.get(j))) {
+                    speedCount++;
+                    swap(j + 1, j);
+                    isSwap = true;
+                }
+            }
+            if (!isSwap) {
+                break;
+            }
+        }
+        return speedCount;
     }
 }
