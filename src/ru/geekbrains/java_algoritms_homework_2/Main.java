@@ -15,19 +15,19 @@ package ru.geekbrains.java_algoritms_homework_2;
 public class Main {
 
     public static void main(String[] args) {
-        MyArrayList myArrayList = new MyArrayList(100000);
+        MyArrayList myArrayList = new MyArrayList(100000); // Создание массива
+//        myArrayList.print(); // Вывод массива в консоль
+//        myArrayList.add(9, 55); // Добавление элемента по индексу
 //        myArrayList.print();
-//        myArrayList.add(9, 55);
+//        myArrayList.add(16); // Добавление элемента в конец массива
 //        myArrayList.print();
-//        myArrayList.add(16);
+//        myArrayList.deleteIndex(10); // Удаление элемента по индексу
 //        myArrayList.print();
-//        myArrayList.deleteIndex(10);
+//        myArrayList.deleteAllValue(314); // Удаление всех заданных элементов в массиве
 //        myArrayList.print();
-//        myArrayList.deleteAllValue(314);
+//        myArrayList.deleteValue(16); // Удаление элемента по значению
 //        myArrayList.print();
-//        myArrayList.deleteValue(16);
-//        myArrayList.print();
-//        System.out.println(myArrayList.searchByIndex(4));
+//        System.out.println(myArrayList.searchByIndex(4)); // Поиск элемента по индексу
 //        System.out.println(myArrayList.searchByValue(55));
         System.out.println("Selection sort operations count: " + myArrayList.selectionSort());
 //        myArrayList.print();
